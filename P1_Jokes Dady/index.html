@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jokes Dady</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Jokes Dady</h1><br>
+        <p id="jokeText">Hye, my name is joky I would tell you a joke</p><br>
+        <button id="btn">Tell Me a Joke</button><br>
+    </div>
+
+    <script>
+    const apikey = "ErDLhiPgU8MJHht4z9tbrw==OvwWLMSJenY0OPx4"
+    const btn = document.getElementById('btn');
+    const jokeText = document.getElementById('jokeText');
+
+    const options = {
+        method: 'GET',
+        headers: { 'X-Api-Key':apikey }
+    };
+    btn.addEventListener('click',async()=>{
+        try {
+
+            jokeText.disabled = true;
+            jokeText.innerHTML = "Updating...";
+            btn.innerHTML = "Loading";
+        
+        var res =await fetch("https://api.api-ninjas.com/v1/dadjokes?limit=1",options);
+        var data = await res.json()
+        jokeText.disabled = false;
+        btn.innerHTML = "Tell Me a Joke"
+        jokeText.innerHTML = data[0].joke;
+            
+        } catch (error) {
+            jokeText.innerHTML = "Cannot connect to internet";
+        }
+
+
+
+
+
+
+
+        
+
+        // jokeText.innerHTML = 
+    })
+    </script>
+</body>
+</html>
